@@ -1,5 +1,5 @@
 {
-  "name": "@uptrack/mcp",
+  "name": "@uptrack-app/mcp",
   "version": "0.1.0",
   "description": "MCP server for Uptrack uptime monitoring — use with Claude, ChatGPT, Cursor",
   "type": "module",
