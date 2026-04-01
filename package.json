@@ -1,10 +1,10 @@
 {
   "name": "@uptrack-app/mcp",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "MCP server for Uptrack uptime monitoring — use with Claude, ChatGPT, Cursor",
   "type": "module",
   "bin": {
-    "uptrack-mcp": "./src/index.js"
+    "uptrack-mcp": "src/index.js"
   },
   "files": [
     "src/"
@@ -26,7 +26,7 @@
   "homepage": "https://uptrack.app",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Uptrack-App/uptrack-mcp.git"
+    "url": "git+https://github.com/Uptrack-App/uptrack-mcp.git"
   },
   "engines": {
     "node": ">=18"
