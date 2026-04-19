@@ -1,0 +1,53 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-09-29/server.schema.json",
+  "name": "io.github.uptrack-app/uptrack-mcp",
+  "description": "Free uptime monitoring for developers. Create monitors, triage incidents, and manage alerts from inside your AI client — HTTP, DNS, SSL, TCP, and heartbeat checks with 30-second intervals and multi-region alert confirmation.",
+  "repository": {
+    "url": "https://github.com/Uptrack-App/uptrack-mcp",
+    "source": "github"
+  },
+  "version": "0.1.2",
+  "websiteUrl": "https://uptrack.app",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://api.uptrack.app/mcp"
+    }
+  ],
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "@uptrack-app/mcp",
+      "version": "0.1.2",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "UPTRACK_API_KEY",
+          "description": "Uptrack API key. Generate one at https://uptrack.app/dashboard/api-keys.",
+          "isRequired": true,
+          "isSecret": true
+        },
+        {
+          "name": "UPTRACK_API_URL",
+          "description": "Override the Uptrack API base URL (defaults to https://api.uptrack.app).",
+          "isRequired": false,
+          "default": "https://api.uptrack.app"
+        }
+      ]
+    }
+  ],
+  "_meta": {
+    "io.modelcontextprotocol.registry/publisher-provided": {
+      "categories": ["developer-tools", "monitoring", "observability"],
+      "icons": [
+        {
+          "src": "https://uptrack.app/favicon.svg",
+          "mimeType": "image/svg+xml",
+          "sizes": ["any"]
+        }
+      ]
+    }
+  }
+}
