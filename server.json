@@ -1,6 +1,6 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-09-29/server.schema.json",
-  "name": "io.github.uptrack-app/uptrack-mcp",
+  "name": "io.github.Uptrack-App/uptrack-mcp",
   "description": "MCP server for Uptrack uptime monitoring. Manage monitors and incidents from AI agents.",
   "repository": {
     "url": "https://github.com/Uptrack-App/uptrack-mcp",
