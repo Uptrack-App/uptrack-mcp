@@ -1,7 +1,7 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-09-29/server.schema.json",
   "name": "io.github.uptrack-app/uptrack-mcp",
-  "description": "Free uptime monitoring for developers. Create monitors, triage incidents, and manage alerts from inside your AI client — HTTP, DNS, SSL, TCP, and heartbeat checks with 30-second intervals and multi-region alert confirmation.",
+  "description": "MCP server for Uptrack uptime monitoring. Manage monitors and incidents from AI agents.",
   "repository": {
     "url": "https://github.com/Uptrack-App/uptrack-mcp",
     "source": "github"
