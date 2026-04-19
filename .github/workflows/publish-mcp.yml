@@ -1,12 +1,14 @@
 name: Publish to MCP Registry
 
 on:
-  # Manual trigger for the initial publish.
+  # Manual trigger (one-click from the Actions tab) for the first publish
+  # or for re-publishing without a version bump.
   workflow_dispatch:
-  # Re-publish whenever server.json changes on main.
+  # Auto-publish whenever package.json or server.json changes on main.
   push:
     branches: [main]
     paths:
+      - "package.json"
       - "server.json"
       - ".github/workflows/publish-mcp.yml"
 
@@ -19,11 +21,32 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "lts/*"
+          registry-url: "https://registry.npmjs.org"
+
+      # --- npm publish -----------------------------------------------------
+      # Skips gracefully if the version in package.json is already on npm,
+      # so re-running the workflow on an unchanged version is safe.
+      - name: Publish to npm (if new version)
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          PKG_VER=$(node -p "require('./package.json').version")
+          PKG_NAME=$(node -p "require('./package.json').name")
+          if npm view "${PKG_NAME}@${PKG_VER}" version >/dev/null 2>&1; then
+            echo "npm: ${PKG_NAME}@${PKG_VER} already published, skipping."
+          else
+            npm publish --access public
+          fi
+
+      # --- MCP Registry publish --------------------------------------------
       - name: Install mcp-publisher
         run: |
           curl -L "https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_$(uname -s | tr '[:upper:]' '[:lower:]')_$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/').tar.gz" | tar xz mcp-publisher
 
-      - name: Authenticate via GitHub OIDC
+      - name: Authenticate to MCP Registry via GitHub OIDC
         run: ./mcp-publisher login github-oidc
 
       - name: Publish server.json
