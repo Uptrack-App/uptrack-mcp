@@ -6,7 +6,7 @@
     "url": "https://github.com/Uptrack-App/uptrack-mcp",
     "source": "github"
   },
-  "version": "0.1.2",
+  "version": "0.1.4",
   "websiteUrl": "https://uptrack.app",
   "remotes": [
     {
@@ -18,7 +18,7 @@
     {
       "registryType": "npm",
       "identifier": "@uptrack-app/mcp",
-      "version": "0.1.2",
+      "version": "0.1.4",
       "transport": {
         "type": "stdio"
       },
