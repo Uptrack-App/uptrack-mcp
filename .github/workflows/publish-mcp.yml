@@ -27,12 +27,17 @@ jobs:
           registry-url: "https://registry.npmjs.org"
 
       # --- npm publish -----------------------------------------------------
-      # Skips gracefully if the version in package.json is already on npm,
-      # so re-running the workflow on an unchanged version is safe.
+      # Skips if NPM_TOKEN is not set or the version is already on npm.
+      # Failures here do not block the MCP Registry publish below.
       - name: Publish to npm (if new version)
+        continue-on-error: true
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
+          if [ -z "${NODE_AUTH_TOKEN}" ]; then
+            echo "npm: NPM_TOKEN not set, skipping npm publish."
+            exit 0
+          fi
           PKG_VER=$(node -p "require('./package.json').version")
           PKG_NAME=$(node -p "require('./package.json').name")
           if npm view "${PKG_NAME}@${PKG_VER}" version >/dev/null 2>&1; then
