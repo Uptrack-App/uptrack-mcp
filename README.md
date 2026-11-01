@@ -13,15 +13,15 @@ The fastest path. Use this if your client supports remote MCP + OAuth.
 
 | Client | Install |
 |---|---|
-| **Cursor** | [One-click deeplink](https://uptrack.app/dashboard/install) |
-| **VS Code** 1.100+ | [One-click deeplink](https://uptrack.app/dashboard/install) |
-| **Windsurf** | [One-click deeplink](https://uptrack.app/dashboard/install) |
+| **Cursor** | Add a remote MCP server → paste `https://api.uptrack.app/mcp` |
+| **VS Code** 1.100+ | Add a remote MCP server → paste `https://api.uptrack.app/mcp` |
+| **Windsurf** | Add a remote MCP server → paste `https://api.uptrack.app/mcp` |
 | **Claude.ai** | Settings → Connectors → Add custom connector → paste `https://api.uptrack.app/mcp` |
 | **ChatGPT** | Settings → Connectors → Add remote MCP → paste `https://api.uptrack.app/mcp` |
 
-OAuth handles consent in-app. No API key.
+OAuth handles consent in-app. No API key. You need an Uptrack account on a paid plan.
 
-See [uptrack.app/dashboard/install](https://uptrack.app/dashboard/install) for the full install flow with one-click buttons.
+See the [Uptrack MCP guide](https://uptrack.app/guides/mcp) for the full install steps.
 
 ## Stdio (this package)
 
@@ -83,13 +83,13 @@ Once connected, ask your AI assistant:
 ## Authentication
 
 - **Remote MCP**: OAuth 2.0 — no API key needed, consent handled in-app.
-- **Stdio**: Generate an API key at [uptrack.app/dashboard/api-keys](https://uptrack.app/dashboard/api-keys). Free plan includes API access.
+- **Stdio**: Create an API key in the dashboard under Settings → API Keys. See [how to use an API key](https://uptrack.app/guides/mcp#api-key). API keys need a paid plan.
 
 ## Links
 
-- [Uptrack](https://uptrack.app) — uptime monitoring at 30-second checks, free
-- [Install guide](https://uptrack.app/guides/install-in-your-ai) — step-by-step per client
-- [OpenAPI spec](https://api.uptrack.app/api/openapi)
+- [Uptrack](https://uptrack.app) — uptime monitoring with 30-second checks and a free plan
+- [MCP guide](https://uptrack.app/guides/mcp) — how to connect your client
+- [OpenAPI spec](https://api.uptrack.app/openapi.json)
 - [MCP Protocol](https://modelcontextprotocol.io)
 
 ## License
