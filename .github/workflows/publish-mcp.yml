@@ -51,6 +51,17 @@ jobs:
         run: |
           curl -L "https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_$(uname -s | tr '[:upper:]' '[:lower:]')_$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/').tar.gz" | tar xz mcp-publisher
 
+      # The registry checks that each listed npm package and version exists. When this version is
+      # not on npm yet, publish the hosted endpoint only (the remote at api.uptrack.app/mcp).
+      - name: Drop the npm package from server.json when it is not on npm
+        run: |
+          PKG_VER=$(node -p "require('./package.json').version")
+          PKG_NAME=$(node -p "require('./package.json').name")
+          if ! npm view "${PKG_NAME}@${PKG_VER}" version >/dev/null 2>&1; then
+            echo "npm: ${PKG_NAME}@${PKG_VER} is not published; publishing the remote only."
+            jq 'del(.packages)' server.json > server.remote.json && mv server.remote.json server.json
+          fi
+
       - name: Authenticate to MCP Registry via GitHub OIDC
         run: ./mcp-publisher login github-oidc
 
